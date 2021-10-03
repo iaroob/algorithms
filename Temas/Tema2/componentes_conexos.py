@@ -1,7 +1,6 @@
 import recorredor_vertices_anchura
 import recorredor_vertices_profundidad
 from typing import *
-from algoritmia.datastructures.digraphs import Digraph
 from algoritmia.datastructures.digraphs import UndirectedGraph
 Vertex = TypeVar('Vertex')
 def componentes_conexos(g: UndirectedGraph, recorredor: Callable[[UndirectedGraph, Vertex], List[Vertex]]) -> List[List[Vertex]]:
