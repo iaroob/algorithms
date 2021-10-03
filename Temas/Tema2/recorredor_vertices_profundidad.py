@@ -16,3 +16,4 @@ def recorredor_vertices_profundidad(grafo: Digraph, v_inicial: Vertex) -> List[E
 	seen = set()
 	recorrido_desde(v_inicial)
 	return vertices
+
