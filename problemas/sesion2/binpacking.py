@@ -15,7 +15,7 @@ def mientras_quepa(w: List[int], C: int) -> List[int]: # devuelve la tupla con i
 
 def primero_que_quepa(w: List[int], C: int) -> List[int]:
 	sol = []
-	free_space = [C * len(w)] # Espacio libre en cada contenedor
+	free_space = [C] * len(w) # Espacio libre en cada contenedor
 	for w_i in w:
 		for nc in range(len(w)): # len w = len free_space, nc = numero contenedor
 			if w_i <= free_space[nc]: # si cabe
@@ -25,7 +25,16 @@ def primero_que_quepa(w: List[int], C: int) -> List[int]:
 	return sol
 
 def primero_que_quepa_ordenado(w: List[int], C: int) -> List[int]:
-	pass
+	indice_ordenados = sorted(w)							# AÑADIDO
+	sol = [-1]*len(w)												# CAMBIA
+	free_space = [C] * len(w) 								# Espacio libre en cada contenedor
+	for i in indice_ordenados:							# CAMBIA: for i in indices_ordenados
+		for nc in range(len(w)): 				# len w = len free_space, nc = numero contenedor
+			if w[i] <= free_space[nc]: 			# si cabe
+				sol[i] = nc								# CAMBIA
+				free_space[nc] -= w[i]
+				break
+	return sol
 
 
 def read_data(f) -> Tuple[int, int, List[int]]:
