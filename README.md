@@ -1,1 +1,1 @@
-Notes taken in algorithms class using Python 
+Notes taken in algorithms course using Python 
