@@ -25,7 +25,7 @@ def primero_que_quepa(w: List[int], C: int) -> List[int]:
 	return sol
 
 def primero_que_quepa_ordenado(w: List[int], C: int) -> List[int]:
-	indice_ordenados = sorted(w)							# AÑADIDO
+	indice_ordenados = sorted(range(len(w)), key=lambda i: -w[i])							# AÑADIDO
 	sol = [-1]*len(w)												# CAMBIA
 	free_space = [C] * len(w) 								# Espacio libre en cada contenedor
 	for i in indice_ordenados:							# CAMBIA: for i in indices_ordenados
