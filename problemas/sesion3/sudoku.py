@@ -1,9 +1,7 @@
 from typing import *
 
-
 Position = Tuple[int, int]
 Sudoku = List[List[int]]
-
 
 def vacias(s: Sudoku) -> Iterable[Position]:
     for fila in range(9):
