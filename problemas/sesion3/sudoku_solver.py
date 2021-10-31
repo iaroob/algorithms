@@ -6,8 +6,6 @@ from dataclasses import dataclass
 from algoritmia.schemes.bt_scheme import bt_solve, DecisionSequence
 Solution = Sudoku
 
-
-
 def read_data(f) -> Sudoku:
 	return desde_cadenas(f.readlines())
 
