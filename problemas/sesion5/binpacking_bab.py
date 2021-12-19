@@ -23,14 +23,26 @@ def process(C: int, w: List[int]) -> Solution:
 		def calculate_opt_bound(self) -> int:
 			pass
 
+		#TODO: IMPLEMENTAR - Algoritmo voraz. Completa la solucion parcial actual con "Es el primero en el que quepa"
 		def calculate_pes_bound(self) -> int:
 			pass
 
 		def is_solution(self) -> bool:
-			pass
+			return len(self) == len(w)
 
 		def successors(self) -> Iterable["BinPackingBDS"]:
-			pass
+			n = len(self)
+			if n < len(w):
+				# Crea un hijo por cada contenedor existente en el que quepa
+				for num_container, container_weight in enumerate(self.extra.container_weights):
+					if container_weight + w[n] <= C:
+						cw2 = list(self.extra.container_weights) # copia tupla a lista
+						cw2[num_container] += w[n]
+						yield self.add_decision(num_container, Extra(tuple(cw2)))
+
+				# Crea un hijo con un contenedor nuevo para el objeto nuevo
+				num_container = len(self.extra.container_weights)
+				yield self.add_decision(num_container, Extra(self.extra.container_weights + (w[n],)))
 
 	ca = (0, )
 	initial_ps = BinPackingBDS(Extra(ca))
