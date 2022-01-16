@@ -9,11 +9,7 @@ Vertex = Tuple[int, int]
 Edge = Tuple[Vertex, Vertex]
 Path = List[Vertex]
 Pair = Tuple[int, int]
-
-
 # -----------------------------------------------------
-
-
 # - Recibe un descriptor de fichero que contiene lineas de texto que
 #   representan un laberinto.
 # - Devuelve una tupla de dos elementos:

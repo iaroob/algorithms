@@ -1,6 +1,9 @@
 import sys
 from typing import *
 
+def read_data(f) -> str:
+    return str(f.readline().strip())
+
 def process(problem: str) -> Tuple[int, int, int]:
     def rec(i: int, j: int) -> Tuple[int, int, int]:
         if i == j:
@@ -66,9 +69,6 @@ def process(problem: str) -> Tuple[int, int, int]:
             end = endneg
         return max(izda, dcha, (mejor, begin, end))
     return rec(0, len(problem))
-
-def read_data(f) -> str:
-    return str(f.readline().strip())
 
 def show_results(sol:int ,b:int, e:int):
     print(sol)

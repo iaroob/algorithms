@@ -1,16 +1,15 @@
 from algoritmia.datastructures.digraphs import UndirectedGraph
+from algoritmia.datastructures.queues import Fifo
 from typing import *
 from labyrinth import create_labyrinth
 import sys
-from algoritmia.datastructures.queues import Fifo
+
 Vertex = TypeVar('Vertex')
 Edge = Tuple[Vertex, Vertex]
 Path = List[Edge]
 
 # Recorrido aristas profundidad
-def df_search(g: UndirectedGraph,
-			  source: Vertex,
-			  target: Vertex) -> Path:
+def df_search(g: UndirectedGraph, source: Vertex, target: Vertex) -> Path:
 	def recorrido_desde(u: Vertex,v: Vertex):
 		seen.add(v)
 		aristas.append((u,v))
@@ -24,8 +23,7 @@ def df_search(g: UndirectedGraph,
 	return aristas
 
 # Recuperador de caminos
-def recover_path(edges: List[Edge],
-				 target: Vertex) -> Path:
+def recover_path(edges: List[Edge], target: Vertex) -> Path:
 	# Crea un dicionario de punteros hacia atrás (backpointers)
 	bp = {}
 	for orig,dest in edges:
@@ -41,9 +39,7 @@ def recover_path(edges: List[Edge],
 	return camino
 
 # Recorrido aristas anchura
-def bf_search(g: UndirectedGraph,
-			  source: Vertex,
-			  target: Vertex) -> List[Edge]:
+def bf_search(g: UndirectedGraph, source: Vertex, target: Vertex) -> List[Edge]:
 	aristas = []
 	queue = Fifo()
 	seen = set()
@@ -74,6 +70,8 @@ def show_results(path: Path):
 	for v in path:
 		print(v)
 							# Se hace para usar shortest path como módulo importado.
+
+#--------PROGRAMA PRINCIPAL-------------------------------------
 if __name__ == "__main__":  # Si se utiliza este fichero como modulo no se ejecuta el main de este fichero
 	rows, cols = 40, 60
 	g, path = process(rows, cols)

@@ -1,5 +1,6 @@
 def menor_numero_intervalos(puntos: [float], a: float) -> int:
 	puntos.sort()
+	print(puntos)
 	# coste O(N log N)
 	num=puntos[0]
 	cont=1

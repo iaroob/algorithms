@@ -3,22 +3,22 @@ from typing import *
 Position = Tuple[int, int]
 Sudoku = List[List[int]]
 
-def vacias(s: Sudoku) -> Iterable[Position]:
+def vacias(s: Sudoku) -> Iterable[Position]:        # Devuelve las casillas vacías
     for fila in range(9):
         for col in range(9):
             if s[fila][col] == 0:
                 yield fila, col
 
 
-def primera_vacia(s: Sudoku) -> Optional[Position]:
+def primera_vacia(s: Sudoku) -> Optional[Position]:     # Devuelve la primera casilla vacía
     try:
         return next(vacias(s))
     except StopIteration:
         return None
 
 
-def posibles_en(s: Sudoku, pos: Position) -> Set[int]:
-    fila, col = pos
+def posibles_en(s: Sudoku, pos: Position) -> Set[int]:      # Devuelve el conjunto de los números que se
+    fila, col = pos                                         # pueden poner en una casilla
     used = set(s[fila][c] for c in range(9))
     used = used.union(s[f][col] for f in range(9))
     fc, cc = fila // 3 * 3, col // 3 * 3

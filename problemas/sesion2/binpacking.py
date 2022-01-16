@@ -6,7 +6,7 @@ def mientras_quepa(w: List[int], C: int) -> List[int]: # devuelve la tupla con i
 	available = C
 	sol = []
 	for w_i in w:
-		if w_i == available:
+		if w_i >= available:
 			nc += 1
 			available = C
 		sol.append(nc)
@@ -36,7 +36,6 @@ def primero_que_quepa_ordenado(w: List[int], C: int) -> List[int]:
 				break
 	return sol
 
-
 def read_data(f) -> Tuple[int, int, List[int]]:
 	mode = int(f.readline())
 	C = int(f.readline())
@@ -55,7 +54,6 @@ def process(mode: int, C: int, w: List[int]) -> List[int]:
 def show_results(sol: List[int]):
 	for num_contenedor in sol:
 		print(num_contenedor)
-
 
 if __name__ == "__main__":
 	mode, capacity, weights = read_data(sys.stdin)

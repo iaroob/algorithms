@@ -8,30 +8,32 @@ Solution = Tuple[int, int, Tuple[Decision, ...]]	# (value, weight, decisions)
 
 def read_data(f) -> Tuple[int, List[int], List[int]]:
 	capacity = int(f.readline())
-	v = []
-	w = []
+	values = []
+	weights = []
 	for line in f.readlines():
-		vv, ww = line.strip().split()
-		v.append(vv)
-		w.append(ww)
-	return capacity, v, w
+		value, weight = line.strip().split()
+		values.append(int(value))
+		weights.append(int(weight))
+	return capacity, values, weights
 
 def process(C: int, v: List[int], w: List[int]) -> Solution:
 	@dataclass
 	class Extra:
 		weight: int			# nos hace falta el peso acumulado para saber luego si se pasa del limite o no
 		value: int
-	class KnapsackDS(ScoredDecisionSequence): 	# scoredDecSeq son puntuadas, igual que las decisionsequence pero con un método mñas
+	class KnapsackDS(ScoredDecisionSequence): 	# scoredDecSeq son puntuadas, igual que las decisionsequence pero con un método mas
 		def is_solution(self) -> bool:
 			return len(self) == len(v)			# len(self) = O(1)  ||  len(self.decisions()) = O(n)
 
 		def successors(self) -> Iterable["KnapsackDS"]:		# successors devuelve iterador
 			n = len(self)
-			if n < len(v):								# if no estoy en hoja
+			print("n = ", n)
+			if len(self) < len(v):								# if no estoy en hoja
 				yield self.add_decision(0, self.extra)	# add_dec devuelve objetos de la clase KnapsackDS
 				if self.extra.weight + w[n] <= C:
 					weight2 = self.extra.weight + w[n]
 					value2 = self.extra.value + v[n]
+					print("weight2 y value2 = ", weight2, value2)
 					yield self.add_decision(1, Extra(weight2, value2))
 
 		def score(self) -> int:

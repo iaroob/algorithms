@@ -2,7 +2,7 @@ import time
 import sys
 from typing import *
 
-from entregable5 import read_data, process
+from et5 import read_data, process
 
 
 Score = int
